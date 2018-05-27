@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiServiceGenerator {
 
-	 static String API_BASE_URL="https://campus.tecsup.edu.pe:443/campus-rest/";
+	 static String API_BASE_URL="http://campus.tecsup.edu.pe/campus-rest/";
 
 	 private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 

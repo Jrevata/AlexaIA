@@ -9,8 +9,6 @@ import retrofit2.http.POST;
 
 public interface ApiService {
 
-	
-
 	    @FormUrlEncoded
 	    @POST("login")
 	    Call<Alumno> login(@Field("usuario")String usuario,

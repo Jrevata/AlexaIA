@@ -10,10 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alexaia.app.HomeController;
@@ -33,7 +35,7 @@ public class LoginController {
 	
 	private Alumno alumno_autenticado = null;
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@GetMapping({"/", "/login"})
 	public String home(Locale locale, Model model) {
 		
 		return "login";
@@ -51,7 +53,7 @@ public class LoginController {
 		al=validate(login.getUsuario(), login.getClave());
 		if (al != null) {
 			logger.info(login.toString());
-			modelAndView = new ModelAndView("redirect:/homew", "command", login);
+			modelAndView = new ModelAndView("redirect:/home", "command", login);
 		}else {
 			model.addAttribute("login", "Usuario y/o clave incorrectos");
 			modelAndView = new ModelAndView("login", "command", new Login());
@@ -68,39 +70,13 @@ public class LoginController {
 		
 		
 		
-		Call<Alumno> alumno = api.login(usuario, password);
+		try {
+			alumno_autenticado = api.login(usuario, password).execute().body();
+		} catch (IOException e) {
+			logger.error(e.toString(), e);
+			e.printStackTrace();
+		}
 		
-		alumno.enqueue(new Callback<Alumno>() {
-			
-			@Override
-			public void onResponse(Call<Alumno> call, Response<Alumno> response) {
-				try {
-				int statusCode = response.code();
-				
-				if(response.isSuccessful()) {
-					alumno_autenticado = response.body();
-					
-					
-				}else {
-					
-						System.out.println( "onError: " + response.errorBody().string());
-						 throw new Exception("Error en el servicio");
-					}
-				} catch (Throwable t) {
-						// TODO Auto-generated catch block
-					
-				}
-                   
-				
-				
-			}
-			
-			@Override
-			public void onFailure(Call<Alumno> call, Throwable e) {
-				System.out.println("onFailure: " + e.toString());
-				
-			}
-		});
 		
 		
 		return alumno_autenticado;

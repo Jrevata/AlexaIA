@@ -5,6 +5,7 @@ public class Login {
 	
 	private String usuario;
 	private String clave;
+	
 	public String getUsuario() {
 		return usuario;
 	}
