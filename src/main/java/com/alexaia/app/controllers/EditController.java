@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class EditController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(EditController.class);
 	
 	
 	@GetMapping("/recordatorio/listar/editar")

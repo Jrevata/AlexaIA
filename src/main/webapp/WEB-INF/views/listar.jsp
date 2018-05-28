@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -115,36 +116,18 @@
 		    </tr>
 		  </thead>
 		  <tbody style="background: rgba(0, 0, 0, 0.4);">
+		  	<c:forEach var="evento" items="${eventos}">
 		    <tr>
-		      <th scope="row">Name 1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
-		      <td>@mdo</td>
+		      <th scope="row">${evento.titulo}</th>
+		      <td>${evento.contenido}</td>
+		      <td>${evento.fecha_inicio}</td>
+		      <td>${evento.fecha_final}</td>
 		      <td>
 		      	<a class="btn btn-warning" href="listar/editar">Editar</a>
 		      	<button class="btn btn-danger">Eliminar</button>
 		      </td>
 		    </tr>
-		    <tr>
-		      <th scope="row">Name 2</th>
-		      <td>Jacob</td>
-		      <td>Thornton</td>
-		      <td>@fat</td>
-		      <td>
-		      	<a class="btn btn-warning" href="listar/editar">Editar</a>
-		      	<button class="btn btn-danger">Eliminar</button>
-		      </td>
-		    </tr>
-		    <tr>
-		      <th scope="row">Name 3</th>
-		      <td>Larry</td>
-		      <td>the Bird</td>
-		      <td>@twitter</td>
-		      <td>
-		      	<a class="btn btn-warning" href="listar/editar">Editar</a>
-		      	<button class="btn btn-danger">Eliminar</button>
-		      </td>
-		    </tr>
+		    </c:forEach>
 		  </tbody>
 		</table>
 	</div>

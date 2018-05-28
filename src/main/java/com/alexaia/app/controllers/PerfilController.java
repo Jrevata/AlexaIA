@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PerfilController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PerfilController.class);
 	
 	
 	@GetMapping("/perfil")

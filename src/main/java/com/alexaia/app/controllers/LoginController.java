@@ -33,9 +33,9 @@ public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
-	private Alumno alumno_autenticado = null;
+	public static Alumno alumno_autenticado;
 	
-	@GetMapping({"/", "/login"})
+	@GetMapping({"/","/login"})
 	public String home(Locale locale, Model model) {
 		
 		return "login";

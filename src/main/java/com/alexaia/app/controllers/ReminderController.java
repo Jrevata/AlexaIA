@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ReminderController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReminderController.class);
 		
 		
 	@GetMapping("/recordatorio")
