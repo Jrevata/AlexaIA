@@ -28,11 +28,8 @@ public class ListController {
 			ApiServiceAlexa api = ApiServiceGeneratorAlexa.createService(ApiServiceAlexa.class);
 			List<Evento> eventos = api.getEventos().execute().body();
 			
-		
-			
-			
-			
 			model.addAttribute("eventos", eventos);
+			
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 			model.addAttribute("message", e.getMessage());

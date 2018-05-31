@@ -15,9 +15,9 @@
 		body{
 			padding: 0;
 			margin:0;
-			background: url(<spring:url value="/images/fondo.jpg" />)center no-repeat ;
-			height: auto;
-			width: 100vw;
+			background: url(<spring:url value="/images/fondo.jpg" />);
+			background-repeat: no-repeat;
+			background-attachment: fixed;
 		}
 		.navbar-brand{
 			text-align: center;
@@ -93,12 +93,12 @@
 	</nav>
 	
 	<header style="margin-top: 120px;" >
-		<div style="background: #1ABCD9; width: 300px; padding: 15px;">
+		<div style="background: #1ABCD9; width: 100%; padding: 15px;">
 			<h2>Ver Recordatorios</h2>
 		</div>
 	</header>
 	<div id="dia" style="margin-left: 4%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding-bottom: 5px;">
-		<h3>27</h3> 
+		<h3>28</h3> 
 		<h5>Mayo</h5>
 	</div>
 
