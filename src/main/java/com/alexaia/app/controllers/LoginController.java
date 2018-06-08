@@ -21,8 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alexaia.app.HomeController;
 import com.alexaia.app.models.Alumno;
 import com.alexaia.app.models.Login;
+import com.alexaia.app.models.Usuario;
 import com.alexaia.app.services.ApiService;
+import com.alexaia.app.services.ApiServiceAlexa;
 import com.alexaia.app.services.ApiServiceGenerator;
+import com.alexaia.app.services.ApiServiceGeneratorAlexa;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +37,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	public static Alumno alumno_autenticado;
+	public static Usuario usuario;
 	
 	@GetMapping({"/","/login"})
 	public String home(Locale locale, Model model) {
@@ -42,7 +46,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public ModelAndView login(@ModelAttribute("SpringWeb") Login login, ModelMap model) {
+	public ModelAndView login(@ModelAttribute("SpringWeb") Login login, ModelMap model) throws IOException {
 		alumno_autenticado = null;
 		logger.info("login()");
 		logger.info(login.toString());
@@ -50,9 +54,14 @@ public class LoginController {
 		Login log=null;
 		Alumno al;
 		
+		ApiServiceAlexa api = ApiServiceGeneratorAlexa.createService(ApiServiceAlexa.class);
+		
+		
 		al=validate(login.getUsuario(), login.getClave());
 		if (al != null) {
 			logger.info(login.toString());
+			usuario = api.verificarUsuario(login.getUsuario()).execute().body();
+			//logger.info(usuario.toString());
 			modelAndView = new ModelAndView("redirect:/home", "command", login);
 		}else {
 			model.addAttribute("login", "Usuario y/o clave incorrectos");

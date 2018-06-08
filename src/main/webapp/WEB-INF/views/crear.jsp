@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -120,8 +122,8 @@
 		</div>
 	</header>
 	<div id="dia" style="margin-top: -10px; margin-left: 4%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding-bottom: 5px;">
-		<h3>27</h3> 
-		<h5>Mayo</h5>
+		<h3>${dia}</h3> 
+		<h5>${mes}</h5>
 	</div>
 
 	<aside>
@@ -159,7 +161,7 @@
 	</aside>
 
 	<div class="container">
-		<form action="#" method="POST">
+		<form action="crear" method="POST">
 			<div class=row>
 				<div class="col-md-4">
 					<div class="form-group">
@@ -167,8 +169,12 @@
 						<input class="form-control" type="text" name="titulo" required>
 					</div>
 					<div class="form-group">
-						<label>Subir imagen</label>
-						<input type="file" name="imagen">
+						<label>Elige un ícono</label>
+						<select name="imagen" class="form-control">
+							<option value="dimagen.jpg">reloj</option>
+							<option value="deporte.jpg">deporte</option>
+							<option value="examen.jpg">examen</option>
+						</select>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -184,7 +190,8 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label>Descripción</label>
-						<textarea class="form-control" required></textarea>
+						
+						<textarea class="form-control" name="descripcion" required></textarea>
 					</div>
 				</div>
 				<div style="margin: auto;">

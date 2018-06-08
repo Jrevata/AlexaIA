@@ -98,41 +98,45 @@
 	
 	<header class="fixed-top" style="margin-top: 120px;" >
 		<div style="background: #1ABCD9; max-width: auto 50%; padding: 15px;">
-			<h2>Editando Recordatorio 1</h2>
+			<h2>Editando Recordatorio</h2>
 		</div>
 	</header>
 	<div id="dia" class="fixed-top" style="margin-top: 175px; margin-left: 4%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding-bottom: 5px;">
-		<h3>27</h3> 
-		<h5>Mayo</h5>
+		<h3>${dia}</h3> 
+		<h5>${mes}</h5>
 	</div>
 
 	<div class="container">
-		<form action="#" method="POST">
+		<form action="editarEvent" method="POST">
 			<div class=row>
 				<div class="col-md-4">
 					<div class="form-group">
 						<label>Nombre del recordatorio</label>
-						<input class="form-control" type="text" name="titulo">
+						<input class="form-control" type="text" name="titulo" value="${evento.titulo}">
 					</div>
 					<div class="form-group">
-						<label>Subir imagen</label>
-						<input type="file" name="imagen">
+						<label>Elige un ícono</label>
+						<select name="imagen" class="form-control">
+							<option value="reloj.jpg">reloj</option>
+							<option value="deporte.jpg">deporte</option>
+							<option value="examen.jpg">examen</option>
+						</select>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
 						<label>Fecha a recordar</label>
-						<input class="form-control" type="date" name="fecha_fin">
+						<input class="form-control" type="date" name="fecha_fin" value="${fecha}">
 					</div>
 					<div class="form-group">
 						<label>Hora a recordar</label>
-						<input class="form-control" type="time" name="hora_fin">
+						<input class="form-control" type="time" name="hora_fin" value="${hora}">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
 						<label>Descripción</label>
-						<textarea class="form-control"></textarea>
+						<textarea class="form-control" name="descripcion">${evento.contenido}</textarea>
 					</div>
 				</div>
 				<div style="margin: auto;">

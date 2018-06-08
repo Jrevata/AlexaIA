@@ -4,14 +4,21 @@ package com.alexaia.app;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.net.ssl.SSLContext;
 
 import org.apache.commons.logging.Log;
 
+import com.alexaia.app.controllers.LoginController;
+import com.alexaia.app.dao.AlumnoDAO;
 import com.alexaia.app.models.Alumno;
 import com.alexaia.app.models.Evento;
+import com.alexaia.app.models.Usuario;
 import com.alexaia.app.services.ApiService;
 import com.alexaia.app.services.ApiServiceAlexa;
 import com.alexaia.app.services.ApiServiceGenerator;
@@ -25,8 +32,105 @@ public class AppMain {
 
 	private static final String TAG = AppMain.class.getSimpleName();
 	
-	public static void main(String[] args) throws NoSuchAlgorithmException {
+	public static void main(String[] args) throws NoSuchAlgorithmException, IOException, ParseException {
 		
+		
+		/*
+		String date = "2018-12-05 15:13:13";
+		
+		char[] array = date.toCharArray();
+		
+		String fecha = "";
+		String hora  = "";
+		
+		for(int i = 0; i <= 9; i++) {
+			fecha = fecha + array[i];
+			
+		}
+		
+		for(int i = 11; i < array.length; i++) {
+			hora = hora + array[i];
+			
+		}
+		System.out.println(fecha + " / " + hora);
+		*/
+		/*ApiServiceAlexa api = ApiServiceGeneratorAlexa.createService(ApiServiceAlexa.class);
+		
+		Evento ev = new Evento(1, "Avence", "nada", "2018-06-07 15:12:00", "dimagen.jpg");
+		
+		Evento event = api.updateEvento(1, ev).execute().body();
+		System.out.println(event);*/
+		
+		Date date = new Date();
+		String mes = String.valueOf(date.getMonth()+1);
+		if(date.getMonth()+1 < 10)
+			mes = "0" + String.valueOf(date.getMonth()+1);
+		System.out.println(mes);
+		
+		String dia = String.valueOf(date.getDate());
+		if(date.getDate()<10)
+			dia="0"+String.valueOf(date.getDate());
+		String fecha = date.getYear()+1900 + "-" + mes + "-" +dia +"+"+1;
+		System.out.println(dia);
+		String dia2 = String.valueOf(date.getDate()+1);
+		
+		if(date.getDate()+1 < 10)
+			dia2 = 0 + String.valueOf(date.getDate()+1);
+		
+		//String fecha2 = date.getYear()+1900 + "-" + mes + "-" +dia2 +"+"+LoginController.usuario.getId();
+		
+		ApiServiceAlexa api = ApiServiceGeneratorAlexa.createService(ApiServiceAlexa.class);
+		
+		List<Evento> x = api.mostrarEvento(fecha).execute().body();
+		System.out.println(x.get(0));
+		
+		/*
+		Call<Evento> evento;
+		evento = api.updateEvento(1, ev);
+		
+		evento.enqueue(new Callback<Evento>() {
+
+			@Override
+			public void onFailure(Call<Evento> arg0, Throwable arg1) {
+				System.out.println("Aca el error we");
+				arg1.printStackTrace();
+				
+			}
+
+			@Override
+			public void onResponse(Call<Evento> arg0, Response<Evento> response) {
+				
+				 int statusCode = response.code();
+	                System.out.println(statusCode);
+
+	                if (response.isSuccessful()) {
+
+	                    Evento event = response.body();
+	                    System.out.println(event);
+
+	                } else {
+	                    try {
+	                       
+	                        throw new Exception("Error en el servicio");
+	                    } catch (IOException e) {
+	                        e.printStackTrace();
+	                    } catch (Exception e) {
+	                        e.printStackTrace();
+	                    }
+	                }
+				
+			}
+		});
+		*/
+		
+	/*
+		
+		
+		Usuario x = api.verificarUsuario("106547").execute().body();
+		
+		System.out.println(x);
+		*/
+		/*
 		ApiService api = ApiServiceGenerator.createService(ApiService.class);
 		
 		ApiServiceAlexa api2 = ApiServiceGeneratorAlexa.createService(ApiServiceAlexa.class);
@@ -46,7 +150,7 @@ public class AppMain {
 			e.printStackTrace();
 			
 		}
-        
+      
         
         try {
 			List<Evento> alumno_autenticado1 = api2.getEventos().execute().body();
@@ -59,7 +163,7 @@ public class AppMain {
 			//logger.error(e.toString(), e);
 			e.printStackTrace();
 			
-		}
+		}*/
         
         
         /*

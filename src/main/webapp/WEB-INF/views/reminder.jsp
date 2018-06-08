@@ -101,8 +101,8 @@
 		</div>
 	</header>
 	<div id="dia" class="fixed-top" style="margin-top: 175px; margin-left: 4%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding-bottom: 5px;">
-		<h3>27</h3> 
-		<h5>Mayo</h5>
+		<h3>${dia}</h3> 
+		<h5>${mes}</h5>
 	</div>
 
 	<div class="container" style="margin-top: 200px;">
@@ -115,20 +115,22 @@
 					    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 					</ol>
 					<div class="carousel-inner">
+						
 						<div class="carousel-item active">
-							<img class="d-block w-100" src='<spring:url value="/images/coursel1.jpg" />' alt="First slide">
+							<img class="d-block w-100" style="width: 200px;height: 400px" src='<spring:url value="/images/coursel1.jpg" />' alt="First slide">
 							<div class="carousel-caption d-none d-md-block">
 								<h5>Recordatorio 1</h5>
 							</div>
 						</div>
+					
 						<div class="carousel-item">
-							<img class="d-block w-100" src='<spring:url value="/images/coursel1.jpg" />' alt="First slide">
+							<img class="d-block w-100" style="width: 200px;height: 400px" src='<spring:url value="/images/coursel1.jpg" />' alt="First slide">
 							<div class="carousel-caption d-none d-md-block">
 								<h5>Recordatorio 2</h5>
 							</div>
 						</div>
 						<div class="carousel-item">
-							<img class="d-block w-100" src='<spring:url value="/images/coursel1.jpg" />' alt="First slide">
+							<img class="d-block w-100" style="width: 200px;height: 400px" src='<spring:url value="/images/coursel1.jpg" />' alt="First slide">
 							<div class="carousel-caption d-none d-md-block">
 								<h5>Recordatorio 3</h5>
 							</div>
@@ -147,7 +149,7 @@
 			<aside class="col-md-3">
 				<div style="margin-bottom: 15px;">
 					<h3 style="display: inline-block;">Mañana</h3>
-					<h3 style="display: inline-block; float: right;">28 Mayo</h3>
+					<h3 style="display: inline-block; float: right;">9 Junio</h3>
 				</div>
 				<div style="max-height: 20rem; overflow: auto; padding: 15px;">
 					<div class="card text-white bg-warning mb-3" style="max-width: 18rem; margin-bottom: 5px; margin: auto;">

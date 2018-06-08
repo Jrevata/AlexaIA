@@ -98,8 +98,8 @@
 		</div>
 	</header>
 	<div id="dia" style="margin-left: 4%; display: flex; justify-content: center; align-items: center; flex-direction: column; padding-bottom: 5px;">
-		<h3>28</h3> 
-		<h5>Mayo</h5>
+		<h3>${dia}</h3> 
+		<h5>${mes}</h5>
 	</div>
 
 	<div class="container">
@@ -111,25 +111,68 @@
 		      <th scope="col">Descripcion</th>
 		      <th scope="col">Fecha de creacion</th>
 		      <th scope="col">Fecha a Recordar</th>
+		      <th scope="col">Estado</th>
 		      <th scope="col">Opciones</th>
 
 		    </tr>
 		  </thead>
-		  <tbody style="background: rgba(0, 0, 0, 0.4);">
+		  <tbody style="background: rgba(0, 0, 0, 0.9);">
 		  	<c:forEach var="evento" items="${eventos}">
 		    <tr>
 		      <th scope="row">${evento.titulo}</th>
 		      <td>${evento.contenido}</td>
 		      <td>${evento.fecha_inicio}</td>
 		      <td>${evento.fecha_final}</td>
+		      <td>${evento.estado}</td>
 		      <td>
-		      	<a class="btn btn-warning" href="listar/editar">Editar</a>
-		      	<button class="btn btn-danger">Eliminar</button>
+		      	<a class="btn btn-warning" href="listar/editar/${evento.id} ">Editar</a>
+		      	<a class="btn btn-danger"  href="listar/eliminar/${evento.id}">Eliminar</a>
 		      </td>
 		    </tr>
 		    </c:forEach>
 		  </tbody>
 		</table>
+		
+		
+		<div id="pagination">
+		<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item">
+			    <c:url value="/recordatorio/listar" var="prev">
+			        <c:param name="page" value="${page-1}"/>
+			    </c:url>
+			    <c:if test="${page > 1}">
+			         <a class="page-link" href="<c:out value="${prev}" />" class="pn prev">Prev</a>
+			    </c:if>
+			</li>
+			<li class="page-item">
+			    <c:forEach begin="1" end="${maxPages}" step="1" varStatus="i">
+			        <c:choose>
+			            <c:when test="${page == i.index}">
+			                <span>${i.index}</span>
+			            </c:when>
+			            <c:otherwise>
+			                <c:url value="/recordatorio/listar" var="url">
+			                    <c:param name="page" value="${i.index}"/>
+			                </c:url>
+			                 <li class="page-item"><a class="page-link" href='<c:out value="${url}" />'>${i.index}</a></li>
+			            </c:otherwise>
+			        </c:choose>
+			    </c:forEach>
+			</li>
+			<li class="page-item">
+		    <c:url value="/recordatorio/listar" var="next">
+		        <c:param name="page" value="${page + 1}"/>
+		    </c:url>
+		    <c:if test="${page + 1 <= maxPages}">
+		         <li class="page-item"><a class="page-link" href='<c:out value="${next}" />' class="pn next">Next</a></li>
+		    </c:if>
+		    </li>
+		    </ul>
+		</nav>
+		</div>
+		
+		
 	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
